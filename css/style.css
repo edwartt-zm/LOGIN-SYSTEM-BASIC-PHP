@@ -1,0 +1,256 @@
+/* Reset básico de estilos para todos los elementos */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+/* Variables CSS para el tema claro (default) */
+:root {
+    --background-color: #fff; /* Fondo principal blanco */
+    --container-bg: rgba(255, 255, 255, 0.95); /* Fondo del contenedor con transparencia */
+    --text-color: #333; /* Color principal del texto */
+    --text-secondary: #666; /* Color secundario del texto */
+    --border-color: #e1e1e1; /* Color de bordes */
+    --input-bg: #ffffff;     /* Fondo de inputs */
+    --button-bg: #000000;    /* Color del botón */
+    --button-hover: #333333; /* Color del botón al hover */
+    --link-color: #0000ee;   /* Color de enlaces */
+}
+
+/* Variables CSS para el tema oscuro */
+[data-theme="dark"] {
+    --background-color: #1a1a1a;     /* Fondo principal oscuro */
+    --container-bg: rgba(30, 30, 30, 0.95); /* Fondo del contenedor oscuro */
+    --text-color: #ffffff;           /* Texto en blanco */
+    --text-secondary: #cccccc;       /* Texto secundario en gris claro */
+    --border-color: #444444;         /* Bordes más claros */
+    --input-bg: #2d2d2d;             /* Fondo de inputs oscuro */
+    --button-bg: #a238f5;            /* Botón en púrpura */
+    --button-hover: #a238f5;         /* Hover del botón */
+    --link-color: #a238f5;           /* Enlaces en púrpura*/
+}
+
+/* Estilos del body - centra el contenido vertical y horizontalmente */
+body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--background-color);
+    transition: background-color 0.3s ease;
+}
+
+/* Contenedor principal del formulario */
+.login-container {
+    background: var(--container-bg);
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgb(0, 0, 0);
+    width: 90%;
+    max-width: 400px;
+    backdrop-filter: blur(10px);
+}
+
+/* Estilos para modo oscuro (redefinido para sobrescribir) */
+[data-theme="dark"] .login-container {
+    background: var(--container-bg);
+    box-shadow: 0 15px 35px rgba(162, 56, 245, 1);
+}
+
+/* Estilos del encabezado del login */
+.login-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.login-header h1 {
+    color: var(--text-color);
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.login-header p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+/* Estilos para los grupos de input */
+.input-group {
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid var(--border-color);
+    border-radius: 10px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    outline: none;
+    background-color: var(--input-bg);
+    color: var(--text-color);
+}
+
+/* Estado focus de los inputs */
+.input-group input:focus {
+    border-color: var(--button-bg);
+}
+
+/* Labels flotantes */
+.input-group label {
+    position: absolute;
+    left: 15px;
+    top: -10px;
+    background: var(--container-bg);
+    padding: 0 5px;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.remember-forgot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+}
+
+.remember-me {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-color);
+}
+
+.remember-me input[type="checkbox"] {
+    cursor: pointer;
+}
+
+.forgot-password {
+    color: var(--link-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.forgot-password:hover {
+    color: var(--button-hover);
+}
+
+/* Botón de login */
+.login-button {
+    width: 100%;
+    padding: 12px;
+    background: var(--button-bg);
+    color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.login-button:hover {
+    background: var(--button-hover);
+}
+
+/* Estilos para el switch de tema */
+.theme-switch {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.theme-switch input {
+    display: none;
+}
+
+.theme-label {
+    cursor: pointer;
+    padding: 10px;
+    background: #4bd763; /* Botón toggle modo claro */
+    display: flex;
+    border-radius: 50px;
+    height: 25px;
+    width: 50px;
+    position: relative;
+}
+
+/* Círculo del switch */
+.theme-label::after {
+    content: '';
+    width: 21px;
+    height: 21px;
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    background: #ffffff;
+    border-radius: 50%;
+    transition: 0.3s;
+}
+
+/* Mueve el círculo cuando está checkeado */
+.theme-switch input:checked + .theme-label::after {
+    left: calc(100% - 23px);
+}
+
+/* Cambia el color del switch cuando está en modo oscuro */
+.theme-switch input:checked + .theme-label {
+    background: #a238f5; /* Botón toggle modo oscuro */
+}
+
+.theme-text {
+    color: var(--text-color);
+    font-size: 0.9rem;
+    user-select: none; /* Evita que el texto se pueda seleccionar */
+}
+
+/* -------------------- */
+/* Media Queries (Responsive) */
+/* -------------------- */
+@media screen and (max-width: 576px) {
+    /* Ajusta el contenedor en pantallas pequeñas */
+    .login-container {
+        width: 90%;
+        max-width: 100%;
+        padding: 1.5rem;
+        border-radius: 10px;
+        box-shadow: none;
+        margin: 1rem;
+    }
+
+    /* Ajusta el tamaño de fuentes para el header */
+    .login-header h1 {
+        font-size: 2rem;
+    }
+
+    .login-header p {
+        font-size: 0.8rem;
+    }
+
+    /* Ajusta el tamaño de texto y padding en inputs y botones */
+    .input-group input {
+        font-size: 0.95rem;
+        padding: 10px;
+    }
+
+    .login-button {
+        font-size: 1rem;
+        padding: 10px;
+    }
+
+    /* Ajusta margenes entre elementos */
+    .input-group {
+        margin-bottom: 1rem;
+    }
+    
+    .remember-forgot {
+        margin-bottom: 1rem;
+        font-size: 0.8rem;
+    }
+}
